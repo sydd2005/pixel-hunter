@@ -1,6 +1,4 @@
-import createElementFromTemplate from './../dom-factory';
-
-const createFooterElement = () => {
+const createFooterMarkup = () => {
   const footerTemplate = `
 <footer class="footer">
 <a href="https://htmlacademy.ru" class="social-link social-link--academy">HTML Academy</a>
@@ -14,7 +12,7 @@ const createFooterElement = () => {
 </footer>
 `;
 
-  return createElementFromTemplate(footerTemplate);
+  return footerTemplate;
 };
 
-export default createFooterElement;
+export default createFooterMarkup;

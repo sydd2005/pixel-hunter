@@ -1,6 +1,7 @@
 import createElementFromTemplate from './../dom-factory';
 import showScreen from '../show-screen';
 import createRulesScreen from './rules';
+import createFooterMarkup from './footer';
 
 const createGreetingScreen = () => {
   const greetingElement = createElementFromTemplate(`
@@ -17,6 +18,7 @@ const createGreetingScreen = () => {
 </div>
 <div class="greeting__continue"><span><img src="img/arrow_right.svg" width="64" height="64" alt="Next"></span></div>
 </div>
+${createFooterMarkup()}
 `);
 
   const continueButton = greetingElement.querySelector(`.greeting__continue`);

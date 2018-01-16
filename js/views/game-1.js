@@ -2,23 +2,12 @@ import createElementFromTemplate from './../dom-factory';
 import showScreen from '../show-screen';
 import createGame2Screen from './game-2';
 import createGreetingScreen from './greeting';
+import createHeaderMarkup from './header';
+import createFooterMarkup from './footer';
 
 const createGame1Screen = () => {
   const game1Element = createElementFromTemplate(`
-<header class="header">
-<div class="header__back">
-  <span class="back">
-    <img src="img/arrow_left.svg" width="45" height="45" alt="Back">
-    <img src="img/logo_small.png" width="101" height="44">
-  </span>
-</div>
-<h1 class="game__timer">NN</h1>
-<div class="game__lives">
-  <img src="img/heart__empty.svg" class="game__heart" alt="Life" width="32" height="32">
-  <img src="img/heart__full.svg" class="game__heart" alt="Life" width="32" height="32">
-  <img src="img/heart__full.svg" class="game__heart" alt="Life" width="32" height="32">
-</div>
-</header>
+${createHeaderMarkup({})}
 <div class="game">
 <p class="game__task">Угадайте для каждого изображения фото или рисунок?</p>
 <form class="game__content">
@@ -60,6 +49,7 @@ const createGame1Screen = () => {
   </ul>
 </div>
 </div>
+${createFooterMarkup()}
 `);
 
   const gameContentForm = game1Element.querySelector(`.game__content`);
