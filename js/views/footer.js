@@ -1,4 +1,4 @@
-const createFooterMarkup = () => {
+const generateFooterMarkup = () => {
   const footerTemplate = `
 <footer class="footer">
 <a href="https://htmlacademy.ru" class="social-link social-link--academy">HTML Academy</a>
@@ -15,4 +15,4 @@ const createFooterMarkup = () => {
   return footerTemplate;
 };
 
-export default createFooterMarkup;
+export default generateFooterMarkup;

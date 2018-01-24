@@ -1,12 +1,12 @@
 import createElementFromTemplate from './../dom-factory';
 import showScreen from '../show-screen';
 import createGreetingScreen from './greeting';
-import createHeaderMarkup from './header';
-import createFooterMarkup from './footer';
+import generateHeaderMarkup from './header';
+import generateFooterMarkup from './footer';
 
 const createStatsScreen = () => {
   const statsElement = createElementFromTemplate(`
-${createHeaderMarkup()}
+${generateHeaderMarkup()}
 <div class="result">
 <h1>Победа!</h1>
 <table class="result__table">
@@ -107,7 +107,7 @@ ${createHeaderMarkup()}
   </tr>
 </table>
 </div>
-${createFooterMarkup()}
+${generateFooterMarkup()}
 `);
 
   statsElement.querySelector(`.header__back`).addEventListener(`click`, () => {

@@ -1,13 +1,14 @@
 import createElementFromTemplate from './../dom-factory';
 import showScreen from '../show-screen';
 import createGreetingScreen from './greeting';
-import createGame1Screen from './game-1';
-import createHeaderMarkup from './header';
-import createFooterMarkup from './footer';
+import generateHeaderMarkup from './header';
+import generateFooterMarkup from './footer';
+import data from '../data/data';
+import {createGameScreen} from './game';
 
 const createRulesScreen = () => {
   const rulesElement = createElementFromTemplate(`
-${createHeaderMarkup()}
+${generateHeaderMarkup()}
 <div class="rules">
 <h1 class="rules__title">Правила</h1>
 <p class="rules__description">Угадай 10 раз для каждого изображения фото <img
@@ -24,7 +25,7 @@ ${createHeaderMarkup()}
   <button class="rules__button  continue" type="submit" disabled>Go!</button>
 </form>
 </div>
-${createFooterMarkup()}
+${generateFooterMarkup()}
 `);
 
   rulesElement.querySelector(`.header__back`).addEventListener(`click`, () => {
@@ -39,7 +40,7 @@ ${createFooterMarkup()}
 
   rulesElement.querySelector(`.rules__form`).addEventListener(`submit`, (evt) => {
     evt.preventDefault();
-    showScreen(createGame1Screen());
+    showScreen(createGameScreen(data.initialState));
   });
 
   return rulesElement;

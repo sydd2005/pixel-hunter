@@ -1,7 +1,11 @@
 const createElementFromTemplate = (stringTemplate) => {
-  const template = document.createElement(`template`);
+  const template = document.createElement(`div`);
   template.innerHTML = stringTemplate;
-  return template.content.cloneNode(true);
+  const templateFragment = document.createDocumentFragment();
+  [...template.children].forEach((element) => {
+    templateFragment.appendChild(element);
+  });
+  return templateFragment;
 };
 
 export default createElementFromTemplate;

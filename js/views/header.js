@@ -1,4 +1,4 @@
-const createHeaderMarkup = (gameData) => {
+const generateHeaderMarkup = (gameData) => {
   const navBlock = `
 <div class="header__back">
   <span class="back">
@@ -26,4 +26,4 @@ ${gameDataBlock}
   return headerTemplate;
 };
 
-export default createHeaderMarkup;
+export default generateHeaderMarkup;
