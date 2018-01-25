@@ -1,4 +1,6 @@
-const generateHeaderMarkup = (gameData) => {
+import {MAX_LIVES} from '../data/dictionaries';
+
+const generateHeaderMarkup = (state) => {
   const navBlock = `
 <div class="header__back">
   <span class="back">
@@ -8,12 +10,15 @@ const generateHeaderMarkup = (gameData) => {
 </div>
 `;
 
-  const gameDataBlock = gameData ? `
-  <h1 class="game__timer">NN</h1>
+  const gameDataBlock = state ? `
+  <h1 class="game__timer">${state.time}</h1>
   <div class="game__lives">
-    <img src="img/heart__empty.svg" class="game__heart" alt="Life" width="32" height="32">
-    <img src="img/heart__full.svg" class="game__heart" alt="Life" width="32" height="32">
-    <img src="img/heart__full.svg" class="game__heart" alt="Life" width="32" height="32">
+    ${(new Array(MAX_LIVES - state.lives))
+    .fill(`<img src="img/heart__empty.svg" class="game__heart" alt="Life" width="32" height="32">`)
+    .join(`    `)}
+    ${(new Array(state.lives))
+    .fill(`<img src="img/heart__full.svg" class="game__heart" alt="Life" width="32" height="32">`)
+    .join(`    `)}
   </div>` : ``;
 
   const headerTemplate = `

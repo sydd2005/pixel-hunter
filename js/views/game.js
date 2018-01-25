@@ -1,14 +1,14 @@
 import generateGameOptionMarkup from './game-option';
 import {GAME_TYPES} from '../data/dictionaries';
 import generateGameStatsMarkup from './game-stats';
-import gameSessionData from '../data/data';
 import generateHeaderMarkup from './header';
 import generateFooterMarkup from './footer';
 import createElementFromTemplate from '../dom-factory';
 import showScreen from '../show-screen';
 import createGreetingScreen from './greeting';
 
-const generateGameMarkup = (gameData) => {
+const generateGameMarkup = (state) => {
+  const gameData = state.steps[state.currentStepIndex];
   const gameParams = GAME_TYPES[gameData.type];
 
   const optionsMarkup = gameData.options.map((option, idx) => {
@@ -16,13 +16,13 @@ const generateGameMarkup = (gameData) => {
   }).join(``);
 
   const gameMarkup = `
-${generateHeaderMarkup({})}
+${generateHeaderMarkup(state)}
 <div class="game">
   <p class="game__task">${gameData.task}</p>
   <form class="game__content ${gameParams.modifier}">
     ${optionsMarkup}
   </form>
-  ${generateGameStatsMarkup(gameSessionData.currentState)}
+  ${generateGameStatsMarkup(state)}
 </div>
 ${generateFooterMarkup()}
 `;
@@ -46,7 +46,7 @@ export const createNextStepState = (state) => {
 export const createGameScreen = (state) => {
   const currentStep = state.steps[state.currentStepIndex];
   const currentStepType = currentStep.type;
-  const gameElement = createElementFromTemplate(generateGameMarkup(currentStep));
+  const gameElement = createElementFromTemplate(generateGameMarkup(state));
 
   const gameContentForm = gameElement.querySelector(`.game__content`);
 

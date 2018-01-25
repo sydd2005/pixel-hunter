@@ -49,15 +49,10 @@ const generateStepData = (stepType) => {
 
 const initialState = Object.freeze({
   currentStepIndex: 0,
-  lives: 3,
+  lives: 2,
   time: 30,
   stats: (new Array(10)).fill(RESULT_MODIFIER.UNKNOWN),
   steps: [generateStepData(`double`), generateStepData(`single`), generateStepData(`triple`)],
 });
 
-const currentState = Object.assign({}, initialState);
-
-export default {
-  initialState,
-  currentState,
-};
+export default initialState;

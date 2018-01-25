@@ -2,6 +2,14 @@ import showScreen from '../show-screen';
 import {createGameScreen, createNextStepState} from '../views/game';
 import createStatsScreen from '../views/stats';
 
+const showNextScreen = (state) => {
+  const nextStepState = createNextStepState(state);
+  const nextGameScreen = nextStepState.currentStepIndex !== state.currentStepIndex
+    ? createGameScreen(nextStepState)
+    : createStatsScreen();
+  showScreen(nextGameScreen);
+};
+
 export const GAME_TYPES = {
   'single': {
     'modifier': `game__content--wide`,
@@ -18,8 +26,7 @@ export const GAME_TYPES = {
             let currentTarget = evt.target;
             while (currentTarget !== elementToListen) {
               if (currentTarget.classList && currentTarget.classList.contains(`game__answer`)) {
-                const nextStepState = createNextStepState(state);
-                showScreen(createGameScreen(nextStepState));
+                showNextScreen(state);
                 break;
               }
               currentTarget = currentTarget.parentNode;
@@ -45,8 +52,7 @@ export const GAME_TYPES = {
             const question1Checked = elementToListen.querySelector(`[name=question1]:checked`) !== null;
             const question2Checked = elementToListen.querySelector(`[name=question2]:checked`) !== null;
             if (question1Checked && question2Checked) {
-              const nextStepState = createNextStepState(state);
-              showScreen(createGameScreen(nextStepState));
+              showNextScreen(state);
             }
           };
           return eventHandler;
@@ -69,7 +75,7 @@ export const GAME_TYPES = {
             let currentTarget = evt.target;
             while (currentTarget !== elementToListen) {
               if (currentTarget.classList && currentTarget.classList.contains(`game__option`)) {
-                showScreen(createStatsScreen());
+                showNextScreen(state);
                 break;
               }
               currentTarget = currentTarget.parentNode;
@@ -89,3 +95,5 @@ export const RESULT_MODIFIER = {
   'FAST': `fast`,
   'SLOW': `slow`,
 };
+
+export const MAX_LIVES = 3;

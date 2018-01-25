@@ -3,7 +3,7 @@ import showScreen from '../show-screen';
 import createGreetingScreen from './greeting';
 import generateHeaderMarkup from './header';
 import generateFooterMarkup from './footer';
-import data from '../data/data';
+import initialState from '../data/data';
 import {createGameScreen} from './game';
 
 const createRulesScreen = () => {
@@ -40,7 +40,7 @@ ${generateFooterMarkup()}
 
   rulesElement.querySelector(`.rules__form`).addEventListener(`submit`, (evt) => {
     evt.preventDefault();
-    showScreen(createGameScreen(data.initialState));
+    showScreen(createGameScreen(initialState));
   });
 
   return rulesElement;
